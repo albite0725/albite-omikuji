@@ -24,14 +24,14 @@ body {
 
 .container {
   text-align: center;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.85);
   padding: 30px;
   border-radius: 25px;
 }
 
 button {
-  font-size: 28px;
-  padding: 20px 45px;
+  font-size: 30px;
+  padding: 22px 50px;
   border: none;
   border-radius: 50px;
   background: linear-gradient(135deg, #ffb6c1, #ff69b4);
@@ -43,11 +43,12 @@ button {
 
 button:active {
   transform: scale(0.95);
-  box-shadow: 0 0 35px rgba(255,105,180,1);
+  box-shadow: 0 0 40px rgba(255,105,180,1);
 }
 
 img {
   max-width: 80vw;
+  max-height: 60vh;
   margin-top: 25px;
   display: none;
 }
@@ -62,10 +63,14 @@ img {
 
 <script>
 const images = [
-  "無題859_20251225102913.png",
-  "無題859_20251225102924.png",
-  "無題859_20251225102931.png",
-  "無題859_20251225102940.png"
+  "大吉.png",
+  "中吉.png",
+  "小吉.png",
+  "吉.png",
+  "末吉.png",
+  "大凶.png",
+  "調子に乗るのが吉.png",
+  "火炎基地.png"
 ];
 
 let timer = null;
@@ -76,7 +81,7 @@ function toggle() {
   const btn = document.getElementById("btn");
 
   if (!running) {
-    // 回転スタート
+    // スロット開始
     running = true;
     btn.textContent = "止める！";
     img.style.display = "block";
@@ -84,7 +89,7 @@ function toggle() {
     timer = setInterval(() => {
       const rand = Math.floor(Math.random() * images.length);
       img.src = images[rand];
-    }, 100); // ← 数値を小さくするともっと高速
+    }, 70); // 数字を小さくすると高速
   } else {
     // 停止
     running = false;
