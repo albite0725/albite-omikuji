@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>おみくじ</title>
+<style>
+body {
+  text-align: center;
+  font-family: sans-serif;
+}
+img {
+  max-width: 90%;
+  margin-top: 20px;
+}
+button {
+  font-size: 20px;
+  padding: 12px 24px;
+}
+</style>
+</head>
+<body>
+
+<h1>今日のおみくじ</h1>
+<button onclick="draw()">引く</button>
+<br>
+<img id="result">
+
+<script>
+const images = [
+  "無題859_20251225102913.png",
+  "無題859_20251225102924.png",
+  "無題859_20251225102931.png",
+  "無題859_20251225102940.png"
+];
+
+function draw() {
+  const r = Math.floor(Math.random() * images.length);
+  document.getElementById("result").src = images[r];
+}
+</script>
+
+</body>
+</html>
