@@ -1,43 +1,99 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>おみくじ</title>
-<style>
-body {
-  text-align: center;
-  font-family: sans-serif;
-}
-img {
-  max-width: 90%;
-  margin-top: 20px;
-}
-button {
-  font-size: 20px;
-  padding: 12px 24px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おみくじ</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url("背景白①.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 30px;
+      border-radius: 16px;
+    }
+
+    #result {
+      margin-top: 20px;
+    }
+
+    #result img {
+      max-width: 80%;
+      height: auto;
+    }
+
+    /* ===== おみくじボタン ===== */
+    .omikuji-btn {
+      font-size: 26px;
+      padding: 22px 40px;
+      border-radius: 14px;
+      border: none;
+      background-color: #ff7a7a;
+      color: white;
+      cursor: pointer;
+      width: 80%;
+      max-width: 320px;
+
+      transition: 
+        background-color 0.2s,
+        box-shadow 0.2s,
+        transform 0.1s;
+    }
+
+    /* 光る */
+    .omikuji-btn:hover {
+      background-color: #ff5c5c;
+      box-shadow: 0 0 15px rgba(255, 122, 122, 0.8);
+    }
+
+    /* 押した感 */
+    .omikuji-btn:active {
+      transform: scale(0.94);
+      box-shadow: 0 0 5px rgba(255, 122, 122, 0.6);
+    }
+  </style>
 </head>
+
 <body>
+  <div class="container">
+    <button class="omikuji-btn" onclick="drawOmikuji()">
+      おみくじを引く
+    </button>
 
-<h1>今日のおみくじ</h1>
-<button onclick="draw()">引く</button>
-<br>
-<img id="result">
+    <div id="result"></div>
+  </div>
 
-<script>
-const images = [
-  "無題859_20251225102913.png",
-  "無題859_20251225102924.png",
-  "無題859_20251225102931.png",
-  "無題859_20251225102940.png"
-];
+  <script>
+    function drawOmikuji() {
+      const images = [
+        "無題859_20251225102913.png",
+        "無題859_20251225102924.png",
+        "無題859_20251225102931.png",
+        "無題859_20251225102940.png"
+      ];
 
-function draw() {
-  const r = Math.floor(Math.random() * images.length);
-  document.getElementById("result").src = images[r];
-}
-</script>
+      const random = Math.floor(Math.random() * images.length);
+      const resultDiv = document.getElementById("result");
 
+      resultDiv.innerHTML = `
+        <img src="${images[random]}" alt="おみくじ結果">
+      `;
+    }
+  </script>
 </body>
 </html>
