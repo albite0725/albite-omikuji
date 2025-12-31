@@ -24,14 +24,14 @@ body {
 
 .container {
   text-align: center;
-  background: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.8);
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 25px;
 }
 
 button {
   font-size: 28px;
-  padding: 20px 40px;
+  padding: 20px 45px;
   border: none;
   border-radius: 50px;
   background: linear-gradient(135deg, #ffb6c1, #ff69b4);
@@ -43,22 +43,22 @@ button {
 
 button:active {
   transform: scale(0.95);
-  box-shadow: 0 0 30px rgba(255,105,180,1);
+  box-shadow: 0 0 35px rgba(255,105,180,1);
 }
 
 img {
   max-width: 80vw;
-  margin-top: 20px;
+  margin-top: 25px;
   display: none;
 }
 </style>
 </head>
 
 <body>
-  <div class="container">
-    <button onclick="draw()">おみくじを引く</button><br>
-    <img id="result">
-  </div>
+<div class="container">
+  <button id="btn" onclick="toggle()">おみくじを引く</button><br>
+  <img id="result">
+</div>
 
 <script>
 const images = [
@@ -68,11 +68,29 @@ const images = [
   "無題859_20251225102940.png"
 ];
 
-function draw() {
+let timer = null;
+let running = false;
+
+function toggle() {
   const img = document.getElementById("result");
-  const rand = Math.floor(Math.random() * images.length);
-  img.src = images[rand];
-  img.style.display = "block";
+  const btn = document.getElementById("btn");
+
+  if (!running) {
+    // 回転スタート
+    running = true;
+    btn.textContent = "止める！";
+    img.style.display = "block";
+
+    timer = setInterval(() => {
+      const rand = Math.floor(Math.random() * images.length);
+      img.src = images[rand];
+    }, 100); // ← 数値を小さくするともっと高速
+  } else {
+    // 停止
+    running = false;
+    btn.textContent = "もう一回引く";
+    clearInterval(timer);
+  }
 }
 </script>
 
